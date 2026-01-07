@@ -19,6 +19,33 @@ public class Train {
     }
 
     public String getName()
+    {
+        String temp = name;
+        return temp;
+    }
 
+    public String getDestination()
+    {
+        String temp = destination;
+        return temp;
+    }
+
+    public String getWeight()
+    {
+        int temp = weight;
+        return temp;
+    }
+
+    public String getMiles()
+    {
+        int temp = miles;
+        return temp;
+    }
+    
+    public String getProduct()
+    {
+        String temp = product;
+        return temp;
+    }
 
 }
