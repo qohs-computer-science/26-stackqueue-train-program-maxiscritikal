@@ -1,8 +1,8 @@
 /*
- * TODO: Name
- * TODO: Date
- * TODO: Class Period
- * TODO: Program Description
+ * Max Korsa
+ * 1/8/26
+ * PD: 4
+ * This program simulates a simple trainyard using queues as tracks and a custom class for the trains.
  */
 import java.util.Scanner;
 import java.io.File;
@@ -15,6 +15,10 @@ public class MyProgram {
 	public static void main(String[] args) {
 
 		int limitTrackA = 100000, limitTrackB = 100000, limitTrackC = 100000;
+
+		Queue<String> trackA = new LinkedList<>();
+		Queue<String> trackB = new LinkedList<>();
+		Queue<String> trackC = new LinkedList<>();
 	
 		Scanner x = new Scanner(System.in);
 		try{

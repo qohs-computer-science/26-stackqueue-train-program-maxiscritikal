@@ -30,13 +30,13 @@ public class Train {
         return temp;
     }
 
-    public String getWeight()
+    public int getWeight()
     {
         int temp = weight;
         return temp;
     }
 
-    public String getMiles()
+    public int getMiles()
     {
         int temp = miles;
         return temp;
