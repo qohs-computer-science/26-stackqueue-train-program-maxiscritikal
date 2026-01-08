@@ -48,4 +48,9 @@ public class Train {
         return temp;
     }
 
+    public void resetMiles()
+    {
+        this.miles = 0;
+    }
+
 }

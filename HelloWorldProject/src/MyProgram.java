@@ -19,6 +19,9 @@ public class MyProgram {
 		Queue<String> trackA = new LinkedList<>();
 		Queue<String> trackB = new LinkedList<>();
 		Queue<String> trackC = new LinkedList<>();
+		Queue<String> trackOverweight = new LinkedList<>();
+		Queue<String> trackOther = new LinkedList<>();
+		Queue<String> trackTemp = new LinkedList<>();
 	
 		Scanner x = new Scanner(System.in);
 		try{
@@ -31,5 +34,8 @@ public class MyProgram {
 		{
 			System.out.println(e.getMessage());
 		}
+
+
+
 	}
 }
