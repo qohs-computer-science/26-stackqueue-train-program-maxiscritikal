@@ -16,19 +16,41 @@ public class MyProgram {
 
 		int limitTrackA = 100000, limitTrackB = 100000, limitTrackC = 100000;
 
-		Queue<String> trackA = new LinkedList<>();
-		Queue<String> trackB = new LinkedList<>();
-		Queue<String> trackC = new LinkedList<>();
-		Queue<String> trackOverweight = new LinkedList<>();
-		Queue<String> trackOther = new LinkedList<>();
-		Queue<String> trackTemp = new LinkedList<>();
+		Queue<Train> trackA = new LinkedList<>();
+		Queue<Train> trackB = new LinkedList<>();
+		Queue<Train> trackC = new LinkedList<>();
+		Queue<Train> trackOverweight = new LinkedList<>();
+		Queue<Train> trackOther = new LinkedList<>();
+		Queue<Train> trackTemp = new LinkedList<>();
 	
 		Scanner x = new Scanner(System.in);
 		try{
 			File f = new File("HelloWorldProject/src/data.txt");
-			x = new Scanner (f);
-			String name = x.nextLine();
-			System.out.println(name);
+			while(x.hasNextLine())
+			{
+				x = new Scanner (f);
+				String tag = x.nextLine().trim();
+				if((tag.equals("ENG")))
+				{
+					String name = x.nextLine();
+					String dest = x.nextLine();
+					Train temp = new Train(name, dest);
+					trackTemp.add(temp);
+					System.out.println("Engine added");
+				}
+				else
+				{
+					String name = x.nextLine();
+					String product = x.nextLine();
+					String origin = x.nextLine();
+					String dest = x.nextLine();
+					int weight = x.nextInt();
+					int miles = x.nextInt();
+					Train temp = new Train(name, product, origin, dest, weight, miles);
+					trackTemp.add(temp);
+					System.out.println("Car added");
+				}
+			}
 		}
 		catch(Exception e)
 		{
