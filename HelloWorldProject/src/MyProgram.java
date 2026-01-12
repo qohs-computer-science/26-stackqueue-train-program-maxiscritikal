@@ -87,29 +87,51 @@ public class MyProgram {
 				{
 					System.out.println(t.getName() + " leaving for Baltimore with the following cars:");
 					while(!trackA.isEmpty())
+					{
+						System.out.println(trackA.peek().getName() + " containing " + trackA.peek().getProduct());
+						trackA.remove();
+					}
 
 				}
 
 				else
 				{
+
 					trackA.add(t);
 				}
 			}
 
 			else if (t.getDestination().equals("Charlotte"))
 			{
+				if (t.isEngine())
+				{
+					System.out.println(t.getName() + " leaving for Charlotte with the following cars:");
+					while(!trackB.isEmpty())
+					{
+						System.out.println(trackB.peek().getName() + " containing " + trackB.peek().getProduct());
+						trackB.remove();
+					}
 
+
+				}
 			}
 
 			else if (t.getDestination().equals("Trenton"))
 			{
+				if (t.isEngine())
+				{
+					System.out.println(t.getName() + " leaving for Trenton with the following cars:");
+					while(!trackC.isEmpty())
+					{
+						System.out.println(trackC.peek().getName() + " containing " + trackC.peek().getProduct());
+						trackC.remove();
+					}
 
+				}
 			}
 
 
 		}
-
-
 
 	}
 }
@@ -117,4 +139,15 @@ public class MyProgram {
 public static String artificialEngine()
 {
 	return "ENG00000";
+}
+
+public static int getTotalWeight(Queue temp)
+{
+	int sum = 0;
+	for (Train tempTrain : temp)
+	{
+		sum += tempTrain.getWeight();
+	}
+
+	return sum;
 }
