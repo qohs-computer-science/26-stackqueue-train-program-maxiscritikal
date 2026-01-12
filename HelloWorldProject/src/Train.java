@@ -50,14 +50,14 @@ public class Train {
 
     public void resetMiles()
     {
-        this.miles = 0;
+        this.miles = 100;
     }
 
     public boolean isEngine()
     {
         boolean temp = false;
-        String name = t.getName().trim();
-        if (name.equals("ENG"))
+        String name = this.getName().trim();
+        if (name.startsWith("ENG"))
         {
             temp = true;
         }

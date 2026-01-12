@@ -6,26 +6,25 @@
  */
 import java.util.Scanner;
 import java.io.File;
-import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
 
 public class MyProgram {
 	public static int val = 0;
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 
 		int limitTrackA = 100000, limitTrackB = 100000, limitTrackC = 100000;
 
 		Queue<Train> trackA = new LinkedList<>();
 		Queue<Train> trackB = new LinkedList<>();
 		Queue<Train> trackC = new LinkedList<>();
-		Queue<Train> trackOverweight = new LinkedList<>();
 		Queue<Train> trackOther = new LinkedList<>();
 		Queue<Train> trackTemp = new LinkedList<>();
-		Queue<Train> trackTemp2 = new LinkedList<>();
+		Queue<Train> maintinenceTrack = new LinkedList<>();
 	
 		try{
-			File f = new File("HelloWorldProject/src/data.txt");
+;			File f = new File("HelloWorldProject/src/data.txt");
 			Scanner x = new Scanner(f);
 			while(x.hasNextLine())
 			{
@@ -77,7 +76,7 @@ public class MyProgram {
 			if (t.getMiles() > 700)
 			{
 				t.resetMiles();
-				trackTemp2.add(t);
+				maintinenceTrack.add(t);
 
 			}
 
@@ -96,8 +95,20 @@ public class MyProgram {
 
 				else
 				{
-
-					trackA.add(t);
+					if (getTotalWeight(trackA) + t.getWeight() <= limitTrackA)
+					{
+						trackA.add(t);
+					}
+					else
+					{
+						System.out.println(artificialEngine() + " leaving for Baltimore with the following cars:");
+						while(!trackA.isEmpty())
+						{
+							System.out.println(trackA.peek().getName() + " containing " + trackA.peek().getProduct());
+							trackA.remove();
+						}
+					}
+					
 				}
 			}
 
@@ -111,8 +122,24 @@ public class MyProgram {
 						System.out.println(trackB.peek().getName() + " containing " + trackB.peek().getProduct());
 						trackB.remove();
 					}
+				}
 
-
+				else
+				{
+					if (getTotalWeight(trackB) + t.getWeight() <= limitTrackB)
+					{
+						trackB.add(t);
+					}
+					else
+					{
+						System.out.println(artificialEngine() + " leaving for Charlotte with the following cars:");
+						while(!trackB.isEmpty())
+						{
+							System.out.println(trackB.peek().getName() + " containing " + trackB.peek().getProduct());
+							trackB.remove();
+						}
+					}
+					
 				}
 			}
 
@@ -128,10 +155,73 @@ public class MyProgram {
 					}
 
 				}
+
+				else
+				{
+					if (getTotalWeight(trackC) + t.getWeight() <= limitTrackC)
+					{
+						trackC.add(t);
+					}
+					else
+					{
+						System.out.println(artificialEngine() + " leaving for Trenton with the following cars:");
+						while(!trackC.isEmpty())
+						{
+							System.out.println(trackC.peek().getName() + " containing " + trackC.peek().getProduct());
+							trackC.remove();
+						}
+					}
+					
+				}
 			}
 
+			else
+			{
+				if (t.isEngine())
+				{
+					System.out.println(t.getName() + " leaving for other destinations with the following cars:");
+					while(!trackOther.isEmpty())
+					{
+						System.out.println(trackOther.peek().getName() + " containing " + trackOther.peek().getProduct());
+						trackOther.remove();
+					}
 
+				}
+
+				else
+				{
+					trackOther.add(t);
+				}
+			}
 		}
+
+		for (Train t : trackA)
+		{
+			System.out.println(artificialEngine() + " leaving for Baltimore with the following cars:");
+			System.out.println(t.getName() + " containing " + t.getProduct());
+		}
+
+		for (Train t : trackB)
+		{
+			System.out.println(artificialEngine() + " leaving for Charlotte with the following cars:");
+			System.out.println(t.getName() + " containing " + t.getProduct());
+		}
+
+		for (Train t : trackC)
+		{
+			System.out.println(artificialEngine() + " leaving for Trenton with the following cars:");
+			System.out.println(t.getName() + " containing " + t.getProduct());
+		}
+
+		for (Train t : trackOther)
+		{
+			System.out.println(artificialEngine() + " leaving for other destinations with the following cars:");
+			System.out.println(t.getName() + " containing " + t.getProduct());
+		}
+
+		for (Train t : maintinenceTrack)
+		{
+			System.out.println(t.getName() + " sent to maintenance track for repairs.");
 
 	}
 }
@@ -141,7 +231,7 @@ public static String artificialEngine()
 	return "ENG00000";
 }
 
-public static int getTotalWeight(Queue temp)
+public static int getTotalWeight(Queue<Train> temp)
 {
 	int sum = 0;
 	for (Train tempTrain : temp)
@@ -150,4 +240,4 @@ public static int getTotalWeight(Queue temp)
 	}
 
 	return sum;
-}
+}}
