@@ -22,42 +22,99 @@ public class MyProgram {
 		Queue<Train> trackOverweight = new LinkedList<>();
 		Queue<Train> trackOther = new LinkedList<>();
 		Queue<Train> trackTemp = new LinkedList<>();
+		Queue<Train> trackTemp2 = new LinkedList<>();
 	
-		Scanner x = new Scanner(System.in);
 		try{
 			File f = new File("HelloWorldProject/src/data.txt");
+			Scanner x = new Scanner(f);
 			while(x.hasNextLine())
 			{
-				x = new Scanner (f);
-				String tag = x.nextLine().trim();
-				if((tag.equals("ENG")))
+				String name = x.nextLine().trim();
+				if(name.isEmpty()) continue;
+				
+				if(name.startsWith("ENG"))
 				{
-					String name = x.nextLine();
-					String dest = x.nextLine();
-					Train temp = new Train(name, dest);
-					trackTemp.add(temp);
-					System.out.println("Engine added");
+					if(x.hasNextLine()) {
+						String dest = x.nextLine();
+						Train temp = new Train(name, dest);
+						trackTemp.add(temp);
+						System.out.println("Engine added");
+					}
 				}
 				else
 				{
-					String name = x.nextLine();
-					String product = x.nextLine();
-					String origin = x.nextLine();
-					String dest = x.nextLine();
-					int weight = x.nextInt();
-					int miles = x.nextInt();
-					Train temp = new Train(name, product, origin, dest, weight, miles);
-					trackTemp.add(temp);
-					System.out.println("Car added");
+					if(x.hasNextLine()) {
+						String product = x.nextLine();
+						if(x.hasNextLine()) {
+							String origin = x.nextLine();
+							if(x.hasNextLine()) {
+								String dest = x.nextLine();
+								if(x.hasNextLine()) {
+									int weight = x.nextInt();
+									x.nextLine();
+									if(x.hasNextLine()) {
+										int miles = x.nextInt();
+										x.nextLine();
+										Train temp = new Train(name, product, origin, dest, weight, miles);
+										trackTemp.add(temp);
+										System.out.println("Car added");
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+
+		for (Train t : trackTemp)
+		{
+			if (t.getMiles() > 700)
+			{
+				t.resetMiles();
+				trackTemp2.add(t);
+
+			}
+
+			else if (t.getDestination().equals("Baltimore"))
+			{
+				if (t.isEngine())
+				{
+					System.out.println(t.getName() + " leaving for Baltimore with the following cars:");
+					while(!trackA.isEmpty())
+
+				}
+
+				else
+				{
+					trackA.add(t);
+				}
+			}
+
+			else if (t.getDestination().equals("Charlotte"))
+			{
+
+			}
+
+			else if (t.getDestination().equals("Trenton"))
+			{
+
+			}
+
+
 		}
 
 
 
 	}
+}
+
+public static String artificialEngine()
+{
+	return "ENG00000";
 }

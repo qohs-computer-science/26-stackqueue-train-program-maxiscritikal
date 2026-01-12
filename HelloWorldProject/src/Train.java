@@ -53,4 +53,16 @@ public class Train {
         this.miles = 0;
     }
 
+    public boolean isEngine()
+    {
+        boolean temp = false;
+        String name = t.getName().trim();
+        if (name.equals("ENG"))
+        {
+            temp = true;
+        }
+
+        return temp;
+    }
+
 }
