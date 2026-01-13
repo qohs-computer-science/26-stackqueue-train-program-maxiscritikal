@@ -29,17 +29,14 @@ public class MyProgram {
 			while(x.hasNextLine())
 			{
 				String name = x.nextLine().trim();
-				if(name.isEmpty()) continue;
-				
 				if(name.startsWith("ENG"))
 				{
 					if(x.hasNextLine()) {
 						String dest = x.nextLine();
 						Train temp = new Train(name, dest);
 						trackTemp.add(temp);
-						System.out.println("Engine added");
-					}
-				}
+					}//end if
+				}//end if
 				else
 				{
 					if(x.hasNextLine()) {
@@ -56,19 +53,19 @@ public class MyProgram {
 										x.nextLine();
 										Train temp = new Train(name, product, origin, dest, weight, miles);
 										trackTemp.add(temp);
-										System.out.println("Car added");
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+									}//end if
+								}//end if
+							}//end if
+						}//end if
+					}//end if
+				}//end else
+			}//end while
+			x.close();
+		}//end try
 		catch(Exception e)
 		{
 			e.printStackTrace();
-		}
+		}//end catch
 
 
 		for (Train t : trackTemp)
@@ -77,8 +74,7 @@ public class MyProgram {
 			{
 				t.resetMiles();
 				maintinenceTrack.add(t);
-
-			}
+			}//end if
 
 			else if (t.getDestination().equals("Baltimore"))
 			{
@@ -89,16 +85,15 @@ public class MyProgram {
 					{
 						System.out.println(trackA.peek().getName() + " containing " + trackA.peek().getProduct());
 						trackA.remove();
-					}
-
-				}
+					}//end while
+				}//end if
 
 				else
 				{
 					if (getTotalWeight(trackA) + t.getWeight() <= limitTrackA)
 					{
 						trackA.add(t);
-					}
+					}//end if
 					else
 					{
 						System.out.println(artificialEngine() + " leaving for Baltimore with the following cars:");
@@ -106,12 +101,11 @@ public class MyProgram {
 						{
 							System.out.println(trackA.peek().getName() + " containing " + trackA.peek().getProduct());
 							trackA.remove();
-						}
+						}//end while
 						trackA.add(t);
-					}
-					
-				}
-			}
+					}//end else
+				}//end else
+			}//end else if
 
 			else if (t.getDestination().equals("Charlotte"))
 			{
@@ -122,15 +116,15 @@ public class MyProgram {
 					{
 						System.out.println(trackB.peek().getName() + " containing " + trackB.peek().getProduct());
 						trackB.remove();
-					}
-				}
+					}//end while
+				}//end if
 
 				else
 				{
 					if (getTotalWeight(trackB) + t.getWeight() <= limitTrackB)
 					{
 						trackB.add(t);
-					}
+					}//end if
 					else
 					{
 						System.out.println(artificialEngine() + " leaving for Charlotte with the following cars:");
@@ -138,12 +132,11 @@ public class MyProgram {
 						{
 							System.out.println(trackB.peek().getName() + " containing " + trackB.peek().getProduct());
 							trackB.remove();
-						}
+						}//end while
 						trackB.add(t);
-					}
-					
-				}
-			}
+					}//end else
+				}//end else
+			}//end else if
 
 			else if (t.getDestination().equals("Trenton"))
 			{
@@ -154,16 +147,15 @@ public class MyProgram {
 					{
 						System.out.println(trackC.peek().getName() + " containing " + trackC.peek().getProduct());
 						trackC.remove();
-					}
-
-				}
+					}//end while
+				}//end if
 
 				else
 				{
 					if (getTotalWeight(trackC) + t.getWeight() <= limitTrackC)
 					{
 						trackC.add(t);
-					}
+					}//end if
 					else
 					{
 						System.out.println(artificialEngine() + " leaving for Trenton with the following cars:");
@@ -171,12 +163,11 @@ public class MyProgram {
 						{
 							System.out.println(trackC.peek().getName() + " containing " + trackC.peek().getProduct());
 							trackC.remove();
-						}
+						}//end while
 						trackC.add(t);
-					}
-					
-				}
-			}
+					}//end else
+				}//end else
+			}//end else if
 
 			else
 			{
@@ -187,16 +178,15 @@ public class MyProgram {
 					{
 						System.out.println(trackOther.peek().getName() + " containing " + trackOther.peek().getProduct());
 						trackOther.remove();
-					}
-
-				}
+					}//end while
+				}//end if
 
 				else
 				{
 					trackOther.add(t);
-				}
-			}
-		}
+				}//end else
+			}//end else
+		}//end for
 
 		for (Train t : maintinenceTrack)
 		{
@@ -205,7 +195,7 @@ public class MyProgram {
 				if (getTotalWeight(trackA) + t.getWeight() <= limitTrackA)
 				{
 					trackA.add(t);
-				}
+				}//end if
 				else
 				{
 					System.out.println(artificialEngine() + " leaving for Baltimore with the following cars:");
@@ -213,16 +203,16 @@ public class MyProgram {
 					{
 						System.out.println(trackA.peek().getName() + " containing " + trackA.peek().getProduct());
 						trackA.remove();
-					}
+					}//end while
 					trackA.add(t);
-				}
-			}
+				}//end else
+			}//	end if
 			else if (t.getDestination().equals("Charlotte"))
 			{
 				if (getTotalWeight(trackB) + t.getWeight() <= limitTrackB)
 				{
 					trackB.add(t);
-				}
+				}//end if
 				else
 				{
 					System.out.println(artificialEngine() + " leaving for Charlotte with the following cars:");
@@ -230,16 +220,16 @@ public class MyProgram {
 					{
 						System.out.println(trackB.peek().getName() + " containing " + trackB.peek().getProduct());
 						trackB.remove();
-					}
+					}//end while
 					trackB.add(t);
-				}
-			}
+				}//end else
+			}//end else if
 			else if (t.getDestination().equals("Trenton"))
 			{
 				if (getTotalWeight(trackC) + t.getWeight() <= limitTrackC)
 				{
 					trackC.add(t);
-				}
+				}//end if
 				else
 				{
 					System.out.println(artificialEngine() + " leaving for Trenton with the following cars:");
@@ -247,49 +237,48 @@ public class MyProgram {
 					{
 						System.out.println(trackC.peek().getName() + " containing " + trackC.peek().getProduct());
 						trackC.remove();
-					}
+					}//end while
 					trackC.add(t);
-				}
-			}
+				}//end else
+			}//end else if
 			else
 			{
 				trackOther.add(t);
-			}
-		}
+			}//end else
+		}//end for each
 
 		System.out.println(artificialEngine() + " leaving for Baltimore with the following cars:");
 		while(!trackA.isEmpty())
 		{
 			Train t = trackA.remove();
 			System.out.println(t.getName() + " containing " + t.getProduct());
-		}
+		}//end while
 
 		System.out.println(artificialEngine() + " leaving for Charlotte with the following cars:");
 		while(!trackB.isEmpty())
 		{
 			Train t = trackB.remove();
 			System.out.println(t.getName() + " containing " + t.getProduct());
-		}
+		}//end while
 
 		System.out.println(artificialEngine() + " leaving for Trenton with the following cars:");
 		while(!trackC.isEmpty())
 		{
 			Train t = trackC.remove();
 			System.out.println(t.getName() + " containing " + t.getProduct());
-		}
+		}//end while
 
-		System.out.println("Status:");
-		System.out.println("Remaining cars in Other Destinations track:");
+		System.out.println("Status of remaining cars in Other Destinations track:");
 		for (Train t : trackOther)
 		{
 			System.out.println(t.getName() + " containing " + t.getProduct());
-		}
-	}
+		}//end for
+	}//end main
 
 public static String artificialEngine()
 {
 	return "ENG00000";
-}
+}//end artificialEngine
 
 public static int getTotalWeight(Queue<Train> temp)
 {
@@ -297,7 +286,7 @@ public static int getTotalWeight(Queue<Train> temp)
 	for (Train tempTrain : temp)
 	{
 		sum += tempTrain.getWeight();
-	}
-
+	}//end for
 	return sum;
-}}
+}//end getTotalWeight
+}//end class MyProgram
