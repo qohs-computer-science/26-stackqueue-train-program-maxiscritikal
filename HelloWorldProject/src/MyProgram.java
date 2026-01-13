@@ -107,6 +107,7 @@ public class MyProgram {
 							System.out.println(trackA.peek().getName() + " containing " + trackA.peek().getProduct());
 							trackA.remove();
 						}
+						trackA.add(t);
 					}
 					
 				}
@@ -138,6 +139,7 @@ public class MyProgram {
 							System.out.println(trackB.peek().getName() + " containing " + trackB.peek().getProduct());
 							trackB.remove();
 						}
+						trackB.add(t);
 					}
 					
 				}
@@ -170,6 +172,7 @@ public class MyProgram {
 							System.out.println(trackC.peek().getName() + " containing " + trackC.peek().getProduct());
 							trackC.remove();
 						}
+						trackC.add(t);
 					}
 					
 				}
@@ -195,36 +198,93 @@ public class MyProgram {
 			}
 		}
 
-		for (Train t : trackA)
-		{
-			System.out.println(artificialEngine() + " leaving for Baltimore with the following cars:");
-			System.out.println(t.getName() + " containing " + t.getProduct());
-		}
-
-		for (Train t : trackB)
-		{
-			System.out.println(artificialEngine() + " leaving for Charlotte with the following cars:");
-			System.out.println(t.getName() + " containing " + t.getProduct());
-		}
-
-		for (Train t : trackC)
-		{
-			System.out.println(artificialEngine() + " leaving for Trenton with the following cars:");
-			System.out.println(t.getName() + " containing " + t.getProduct());
-		}
-
-		for (Train t : trackOther)
-		{
-			System.out.println(artificialEngine() + " leaving for other destinations with the following cars:");
-			System.out.println(t.getName() + " containing " + t.getProduct());
-		}
-
 		for (Train t : maintinenceTrack)
 		{
-			System.out.println(t.getName() + " sent to maintenance track for repairs.");
+			if (t.getDestination().equals("Baltimore"))
+			{
+				if (getTotalWeight(trackA) + t.getWeight() <= limitTrackA)
+				{
+					trackA.add(t);
+				}
+				else
+				{
+					System.out.println(artificialEngine() + " leaving for Baltimore with the following cars:");
+					while(!trackA.isEmpty())
+					{
+						System.out.println(trackA.peek().getName() + " containing " + trackA.peek().getProduct());
+						trackA.remove();
+					}
+					trackA.add(t);
+				}
+			}
+			else if (t.getDestination().equals("Charlotte"))
+			{
+				if (getTotalWeight(trackB) + t.getWeight() <= limitTrackB)
+				{
+					trackB.add(t);
+				}
+				else
+				{
+					System.out.println(artificialEngine() + " leaving for Charlotte with the following cars:");
+					while(!trackB.isEmpty())
+					{
+						System.out.println(trackB.peek().getName() + " containing " + trackB.peek().getProduct());
+						trackB.remove();
+					}
+					trackB.add(t);
+				}
+			}
+			else if (t.getDestination().equals("Trenton"))
+			{
+				if (getTotalWeight(trackC) + t.getWeight() <= limitTrackC)
+				{
+					trackC.add(t);
+				}
+				else
+				{
+					System.out.println(artificialEngine() + " leaving for Trenton with the following cars:");
+					while(!trackC.isEmpty())
+					{
+						System.out.println(trackC.peek().getName() + " containing " + trackC.peek().getProduct());
+						trackC.remove();
+					}
+					trackC.add(t);
+				}
+			}
+			else
+			{
+				trackOther.add(t);
+			}
+		}
 
+		System.out.println(artificialEngine() + " leaving for Baltimore with the following cars:");
+		while(!trackA.isEmpty())
+		{
+			Train t = trackA.remove();
+			System.out.println(t.getName() + " containing " + t.getProduct());
+		}
+
+		System.out.println(artificialEngine() + " leaving for Charlotte with the following cars:");
+		while(!trackB.isEmpty())
+		{
+			Train t = trackB.remove();
+			System.out.println(t.getName() + " containing " + t.getProduct());
+		}
+
+		System.out.println(artificialEngine() + " leaving for Trenton with the following cars:");
+		while(!trackC.isEmpty())
+		{
+			Train t = trackC.remove();
+			System.out.println(t.getName() + " containing " + t.getProduct());
+		}
+
+		System.out.println("Status:");
+		System.out.println("Remaining cars in Other Destinations track:");
+		for (Train t : trackOther)
+		{
+			System.out.println(t.getName() + " containing " + t.getProduct());
+		}
 	}
-}
 
 public static String artificialEngine()
 {
